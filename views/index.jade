@@ -1,0 +1,19 @@
+doctype html
+html
+    head
+        title #{title}
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css")
+    body
+        .container-fluid
+            .row
+                .col-md-8(class="col-md-offset-2")
+                    h1.
+                        This is the #{title} page
+                    p.
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio eius modi dolor, reiciendis maxime perferendis, fugit sapiente facilis repellat molestiae dicta esse alias beatae magni aliquid similique accusantium vero dignissimos?
+            .row
+                .col-md-10(class="col-md-offset-1")
+                    form(action="/new")
+                        input(type="submit" value="+ New Post")
+                    ul
+                        li

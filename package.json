@@ -1,0 +1,16 @@
+{
+  "name": "hapiblog",
+  "version": "0.0.1",
+  "description": "CMS created with Hapi",
+  "main": "index.js",
+  "dependencies": {
+    "hapi": "^7.0.0",
+    "joi": "^4.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chaps",
+  "license": "ISC"
+}

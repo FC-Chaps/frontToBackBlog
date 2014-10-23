@@ -1,7 +1,7 @@
 module.exports = {
 
     home: function (request, reply) {
-        reply.view('index.jade', {
+        reply.view('layout.jade', {
             title: 'landing-page'
         });
     },
@@ -16,6 +16,14 @@ module.exports = {
         reply.view('single.jade', {
             title: 'Create'
         });
+    },
+
+    folderServe: {
+        directory: {
+            path: 'public',
+            listing: true
+        }
     }
 
 };
+

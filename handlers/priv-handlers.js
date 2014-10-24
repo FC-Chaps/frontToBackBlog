@@ -5,7 +5,6 @@ module.exports = {
             title: 'Edit'
         });
     },
-
     publish: function (req, res) {
         var db = req.server.plugins["hapi-mongodb"].db;
         db.collection("posts")
@@ -13,5 +12,9 @@ module.exports = {
             firstName: req.payload.fname,
             lastName: req.payload.lname
         }, function(err, item) {res.redirect("/")});
-    }
+    },
+    logout: function (req, res) {
+        req.auth.session.clear();
+        res.redirect("/");
+    },
 };

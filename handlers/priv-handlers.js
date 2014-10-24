@@ -13,6 +13,14 @@ module.exports = {
             lastName: req.payload.lname
         }, function(err, item) {res.redirect("/")});
     },
+    deletePost: function (req, res) {
+        var db = req.server.plugins["hapi-mongodb"].db;
+        db.collection("posts").remove({
+            firstName: req.params.name
+        }, function(err, item) {
+            res.redirect("/");
+        })
+    },
     logout: function (req, res) {
         req.auth.session.clear();
         res.redirect("/");

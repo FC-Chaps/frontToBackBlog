@@ -85,15 +85,15 @@ module.exports = [
         },
         handler: privHandler.deletePost
     },
-    {
+/*    {
         method: "POST",
         path: "/deleteAccount",
         config: {
             auth: "session"
         },
         handler: privHandler.deleteAccount
-    },
- */ {
+    },*/
+    {
         method: "POST",
         path: "/login",
         handler: pubHandler.login

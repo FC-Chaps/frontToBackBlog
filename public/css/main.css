@@ -1,0 +1,45 @@
+body {
+  padding-top: 50px;
+  padding-bottom: 100px;
+  background-color: rgba(76, 56, 255, 0.71); }
+
+button form input {
+  background-color: #fff;
+  border: none; }
+
+.header {
+  text-align: center; }
+  .header h2 {
+    color: #fff; }
+    .header h2:after {
+      display: block;
+      content: " ";
+      margin: 15px auto 20px;
+      width: 80px;
+      height: 3px;
+      background-color: #fff; }
+
+.post {
+  margin-top: 50px;
+  margin-bottom: 30px; }
+  .post form .text-input {
+    width: 100%;
+    max-wdith: 100%;
+    height: 250px; }
+
+.main {
+  text-align: center; }
+  .main h2 {
+    color: #fff; }
+  .main p {
+    color: #D4FFB2; }
+
+.list {
+  padding-top: 50px; }
+  .list ul {
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.3); }
+    .list ul li {
+      padding: 5px; }
+
+/*# sourceMappingURL=main.css.map */

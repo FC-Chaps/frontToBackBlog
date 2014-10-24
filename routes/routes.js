@@ -12,6 +12,13 @@ module.exports = [
         handler: pubHandler.home
     },
 
+    //Serves static images, css, and javascript
+    {
+        method: 'GET',
+        path: '/{param*}',
+        handler: pubHandler.folderServe
+    },
+
     {
         path: '/post',
         method: 'GET',

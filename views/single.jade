@@ -3,11 +3,12 @@ html
     head
         title #{title}
         link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css")
+        link(rel="stylesheet" href="/css/main.css")
     body
         .container-fluid
             .row
-                .col-md-8(class="col-md-offset-2")
-                    h1 #{title} a Blog Post
+                .header(class="col-md-6 col-md-offset-2")
+                    h2 #{title} a Blog Post
                     .nav
                         button(type="button" class="btn btn-default btn-lg")
                             form(action="/")
@@ -18,3 +19,13 @@ html
                         button(type="button" class="btn btn-default btn-lg")
                             form(action="/post")
                                 input(type="submit" value="Publish")
+                .col-md-2  
+                    img.img-responsive(src="/img/joey-t.jpg")
+            .row
+                .post(class="col-md-8 col-md-offset-2")
+                    //- conditional dependent on availability of content
+                    include content.jade
+            .row(class="footer")
+                .col-md-10(class="col-md-offset-1")
+                    p.
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio eius modi dolor, reiciendis maxime perferendis, fugit sapiente facilis repellat molestiae dicta esse alias beatae magni aliquid similique accusantium vero dignissimos?

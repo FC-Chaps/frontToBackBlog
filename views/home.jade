@@ -24,12 +24,12 @@ html
                                 h3
                                     a(href="/post/#{post.firstName}")=post.firstName
                                 if auth == true
-                                    a(href="/post/#{post.firstName}/delete").
+                                    a(href="/post/#{post.firstName}/delete" id="deletepost").
                                         delete
 
-                    a(href="/signup").
+                    a(href="/signup" id="signup").
                         signup
-                    a(href="/logout").
+                    a(href="/logout" id="logout").
                         logout
-                    a(href="/login").
+                    a(href="/login" id="login").
                         login

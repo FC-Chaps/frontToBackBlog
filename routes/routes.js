@@ -10,14 +10,12 @@ module.exports = [
         method: 'GET',
         handler: pubHandler.home
     },
-
     //Serves static images, css, and javascript
     {
         method: 'GET',
         path: '/{param*}',
         handler: pubHandler.folderServe
     },
-
     {
         path: '/post/{name}',
         method: 'GET',
@@ -44,7 +42,7 @@ module.exports = [
     },
 
     {
-        path: '/edit',
+        path: '/post/{name}/edit',
         method: 'GET',
         config: {
             auth: "session"
@@ -53,12 +51,12 @@ module.exports = [
     },
 
     {
-        path: '/edit',
+        path: '/post/{name}/edit',
         method: 'POST',
         config: {
             auth: "session"
         },
-        handler: privHandler.publish
+        handler: privHandler.updatePost
     },
     //AUTHENTICATION HANDLERS
     {

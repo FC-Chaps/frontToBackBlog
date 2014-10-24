@@ -32,6 +32,10 @@ server.views({
 
 server.route(routes);
 
-server.start(function () {
-    console.log('server up and running at: ', server.info.uri);
-});
+if(!module.parent){
+	server.start(function () {
+	    console.log('server up and running at: ', server.info.uri);
+	});
+}
+
+module.exports = server;

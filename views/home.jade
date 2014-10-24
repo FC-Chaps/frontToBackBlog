@@ -23,16 +23,18 @@ html
                             li
                                 h3
                                     a(href="/post/#{post.firstName}").
-                                        hi #{post.firstName}
+                                        #{post.firstName}
                                 if auth == true
                                     a(href="/post/#{post.firstName}/delete" id="deletepost").
                                         delete
 
                     if auth == true
-                        a(href="/signup" id="signup").
-                            signup
+
                         a(href="/logout" id="logout").
                             logout
-                    
-                    a(href="/login" id="login").
-                        login
+                   
+                    if auth == false
+                        a(href="/login" id="login").
+                            login
+                        a(href="/signup" id="signup").
+                                signup

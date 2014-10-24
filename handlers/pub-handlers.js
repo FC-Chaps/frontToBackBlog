@@ -13,6 +13,7 @@ module.exports = {
                 auth: req.state.hasOwnProperty("loggedin")
             })  
         });
+        console.log(req.state);
     },
     single: function (req, res) {
         var db = req.server.plugins["hapi-mongodb"].db;
@@ -48,7 +49,8 @@ module.exports = {
             var user = match[0];
             if(user){
                 bcrypt.compare(req.payload.password, user.password, function(err, same){
-                    if(same){req.auth.session.set({"username": user.username}); 
+                    if(same){
+                        req.auth.session.set({"username": user.username}); 
                         return res.redirect("/");
                     } else {
                         return res.view("404.swig");
@@ -84,7 +86,8 @@ module.exports = {
     folderServe: {
         directory: {
             path: 'public',
-            listing: true
+            listing: false,
+            index: false
         }
     },
 };

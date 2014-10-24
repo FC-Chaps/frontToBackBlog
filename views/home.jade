@@ -23,6 +23,10 @@ html
                             li
                                 h3
                                     a(href="/post/#{post.firstName}")=post.firstName
+                                if auth == true
+                                    a(href="/post/#{post.firstName}/delete").
+                                        delete
+
                     a(href="/signup").
                         signup
                     a(href="/logout").

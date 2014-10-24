@@ -76,7 +76,7 @@ module.exports = [
         path: "/signup",
         handler: pubHandler.signUp
     },
-/*    {
+    {
         //add delete html!
         method: "GET",
         path: "/post/{name}/delete",

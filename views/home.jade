@@ -14,10 +14,10 @@ html
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio eius modi dolor, reiciendis maxime perferendis, fugit sapiente facilis repellat molestiae dicta esse alias beatae magni aliquid similique accusantium vero dignissimos?
             .row
                 .list(class="col-md-6 col-md-offset-3")
-                    button(type="button" class="btn btn-default btn-lg") 
-                        if auth == true
-                            form(action="/new")
-                                input(type="submit" value="+ New Post")
+                    if auth == true
+                        button(type="button" class="btn btn-default btn-lg") 
+                                form(action="/new")
+                                    input(type="submit" value="+ New Post")
                     ul
                         each post in posts
                             li
@@ -25,3 +25,7 @@ html
                                     a(href="/post/#{post.firstName}")=post.firstName
                     a(href="/signup").
                         signup
+                    a(href="/logout").
+                        logout
+                    a(href="/login").
+                        login

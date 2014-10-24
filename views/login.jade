@@ -1,0 +1,14 @@
+doctype html
+html
+    head
+        title #{title}
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css")
+        link(rel="stylesheet" href="/css/main.css")
+    body
+        .container-fluid
+            .row
+                .col-md-4(class="col-md-offset-4")
+                    form(action="/login" method="post")
+                        input(type="text" name="username")
+                        input(type="password" name="password")
+                        input(type="submit" value="login!")

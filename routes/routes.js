@@ -93,7 +93,7 @@ module.exports = [
         },
         handler: privHandler.deleteAccount
     },
-    {
+ */ {
         method: "POST",
         path: "/login",
         handler: pubHandler.login
@@ -102,5 +102,5 @@ module.exports = [
         method: "GET",
         path: "/logout",
         handler: privHandler.logout
-    },*/
+    },
 ];

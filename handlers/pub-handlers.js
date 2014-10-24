@@ -50,7 +50,7 @@ module.exports = {
             if(user){
                 bcrypt.compare(req.payload.password, user.password, function(err, same){
                     if(same){req.auth.session.set({"username": user.username}); 
-                        return res.redirect("/home");
+                        return res.redirect("/");
                     } else {
                         return res.view("404.swig");
                     }

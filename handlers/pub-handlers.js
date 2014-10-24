@@ -33,8 +33,7 @@ module.exports = {
         });
     },
     getLogin: function (req, res) {
-        //create a login jade!
-        res.view("login.jade")
+        res.view("login.jade");
     },
     login: function (req, res) {
         var db = req.server.plugins["hapi-mongodb"].db;
@@ -87,6 +86,6 @@ module.exports = {
             path: 'public',
             listing: true
         }
-    }
+    },
 };
 

@@ -77,7 +77,6 @@ module.exports = [
         handler: pubHandler.signUp
     },
     {
-        //add delete html!
         method: "GET",
         path: "/post/{name}/delete",
         config: {
@@ -102,5 +101,5 @@ module.exports = [
         method: "GET",
         path: "/logout",
         handler: privHandler.logout
-    },
+    }
 ];

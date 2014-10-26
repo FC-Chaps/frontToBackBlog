@@ -99,5 +99,29 @@ module.exports = [
         method: "GET",
         path: "/logout",
         handler: privHandler.logout
-    }
+    },
+    {
+        method: "GET",
+        path: "/admin/home",
+        config: {
+            auth: "session"
+        },
+        handler: privHandler.getAdminHome
+    },
+    {
+        method: "GET",
+        path: "/user/{username}/admin",
+        config: {
+            auth: "session"
+        },
+        handler: privHandler.toggleAdmin
+    },
+    {
+        method: "GET",
+        path: "/user/{username}/verified",
+        config: {
+            auth: "session"
+        },
+        handler: privHandler.toggleVerified
+    },
 ];

@@ -4,6 +4,7 @@ html
         title #{title}
         link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css")
         link(rel="stylesheet" href="/css/main.css")
+
     body
         .container-fluid
             .row
@@ -16,9 +17,6 @@ html
                         button(type="button" class="btn btn-default btn-lg")
                             form(action="/edit")
                                 input(type="submit" value="Edit Post")
-                        button(type="button" class="btn btn-default btn-lg")
-                            form(action="/post")
-                                input(type="submit" value="Publish")
                 .col-md-2  
                     img.img-responsive(src="/img/joey-t.jpg")
             .row
@@ -29,5 +27,6 @@ html
                         input(type="submit" value="Publish" class="btn btn-default btn-lg")
             .row(class="footer")
                 .col-md-10(class="col-md-offset-1")
-                    p.
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio eius modi dolor, reiciendis maxime perferendis, fugit sapiente facilis repellat molestiae dicta esse alias beatae magni aliquid similique accusantium vero dignissimos?
+        script(src="https://tinymce.cachefly.net/4.1/tinymce.min.js")
+        script.
+            tinymce.init({selector:'textarea'});

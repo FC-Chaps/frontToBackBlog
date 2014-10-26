@@ -28,5 +28,9 @@ html
                 .col-md-10(class="col-md-offset-1")
                     h3.
                         #{post.firstName}
+                    p
+                        !{post.lastName}
                     p.
-                        #{post.lastName}
+                        written by: #{post.author}
+                    p.
+                        on: #{post.date}

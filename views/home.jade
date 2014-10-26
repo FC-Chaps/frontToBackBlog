@@ -1,10 +1,14 @@
 doctype html
+
 html
     head
         title #{title}
         link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css")
         link(rel="stylesheet" href="/css/main.css")
     body
+        a(href="/admin/home" type="button" class="btn btn-default btn-lg")
+            span(class="glyphicon glyphicon-cog"). 
+                 Admin
         .container-fluid
             .row
                 .main(class="col-md-8 col-md-offset-2")
@@ -20,13 +24,18 @@ html
                                     input(type="submit" value="+ New Post")
                     ul
                         each post in posts
-                            li
-                                h3
-                                    a(href="/post/#{post.firstName}").
-                                        #{post.firstName}
-                                if auth == true
-                                    a(href="/post/#{post.firstName}/delete" id="deletepost").
-                                        delete
+                                li
+                                    h3
+                                        a(href="/post/#{post.firstName}").
+                                            #{post.firstName}
+                                        p.
+                                            #{post.author}
+                                        p.
+                                            #{post.date}
+                                    if auth == true
+                                        a(href="/post/#{post.firstName}/delete" id="deletepost").
+                                            delete
+
 
                     if auth == true
 

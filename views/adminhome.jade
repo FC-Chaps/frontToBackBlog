@@ -1,0 +1,46 @@
+doctype html
+html
+    head
+        title #{title}
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css")
+        link(rel="stylesheet" href="/css/main.css")
+    body
+        a(href="/" type="button" class="btn btn-default btn-lg")
+            span(class="glyphicon glyphicon-home"). 
+                Home
+        .container-fluid
+            .row
+                .main(class="col-md-8 col-md-offset-2")
+                    h2.
+                        #{title}
+                    p.
+                        #{description}
+            .row
+                .list(class="col-md-6 col-md-offset-3")
+
+                    ul
+                        each user in users
+                            li
+                                h3
+                                    a(href="").
+                                        #{user.username}
+                                if user.admin == true
+                                    p
+                                        a(href="/user/#{user.username}/admin").
+                                            remove admin status
+                                else    
+                                    p
+                                        a(href="/user/#{user.username}/admin").
+                                            add admin status
+                                if user.verified == true
+                                    p
+                                        a(href="/user/#{user.username}/verified").
+                                            unverify user
+                                else
+                                    p
+                                        a(href="/user/#{user.username}/verified").
+                                            verify user
+                                p
+                                    a(href="/user/#{user.username}/delete").
+                                        delete user
+

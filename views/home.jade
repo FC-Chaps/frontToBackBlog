@@ -1,17 +1,21 @@
 doctype html
+
 html
     head
         title #{title}
         link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css")
         link(rel="stylesheet" href="/css/main.css")
     body
+        a(href="/admin/home" type="button" class="btn btn-default btn-lg")
+            span(class="glyphicon glyphicon-cog"). 
+                 Admin
         .container-fluid
             .row
                 .main(class="col-md-8 col-md-offset-2")
                     h2.
-                        This is the #{title} page
+                        #{title}
                     p.
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio eius modi dolor, reiciendis maxime perferendis, fugit sapiente facilis repellat molestiae dicta esse alias beatae magni aliquid similique accusantium vero dignissimos?
+                        #{description}
             .row
                 .list(class="col-md-6 col-md-offset-3")
                     if auth == true
@@ -20,16 +24,26 @@ html
                                     input(type="submit" value="+ New Post")
                     ul
                         each post in posts
-                            li
-                                h3
-                                    a(href="/post/#{post.firstName}")=post.firstName
-                                if auth == true
-                                    a(href="/post/#{post.firstName}/delete" id="deletepost").
-                                        delete
+                                li
+                                    h3
+                                        a(href="/post/#{post.firstName}").
+                                            #{post.firstName}
+                                        p.
+                                            #{post.author}
+                                        p.
+                                            #{post.date}
+                                    if auth == true
+                                        a(href="/post/#{post.firstName}/delete" id="deletepost").
+                                            delete
 
-                    a(href="/signup" id="signup").
-                        signup
-                    a(href="/logout" id="logout").
-                        logout
-                    a(href="/login" id="login").
-                        login
+
+                    if auth == true
+
+                        a(href="/logout" id="logout").
+                            logout
+                   
+                    if auth == false
+                        a(href="/login" id="login").
+                            login
+                        a(href="/signup" id="signup").
+                                signup

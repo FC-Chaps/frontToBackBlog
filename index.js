@@ -2,15 +2,25 @@
 var hapi = require('hapi');
 //For validation
 var joi = require('joi');
-
-var server = hapi.createServer('localhost', 8080);
+var server = hapi.createServer('localhost', 8080, {
+	cache: {
+		engine: require("catbox-mongodb"),
+		options: {
+			host: "linus.mongohq.com",
+			port: 10089,
+			username: "hapi",
+			password: "tester",
+			partition: "chaps-twitter"
+		}
+	}
+});
 var routes = require('./routes/routes.js');
 var cookieOptions = require('./config/cookie.js');
 
 server.pack.register({
 	plugin: require("hapi-mongodb"),
 	options: {
-		"url": require("./keys/mongouri.js"),
+		"url": process.env.MONGO_URI || require("./keys/mongouri.js"),
 		settings: {
 			db: {
 				native_parser: false
@@ -32,6 +42,10 @@ server.views({
 
 server.route(routes);
 
-server.start(function () {
-    console.log('server up and running at: ', server.info.uri);
-});
+if(!module.parent){
+	server.start(function () {
+	    console.log('server up and running at: ', server.info.uri);
+	});
+}
+
+module.exports = server;

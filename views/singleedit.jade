@@ -4,6 +4,7 @@ html
         title #{title}
         link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css")
         link(rel="stylesheet" href="/css/main.css")
+
     body
         .container-fluid
             .row
@@ -20,12 +21,12 @@ html
                     img.img-responsive(src="/img/joey-t.jpg")
             .row
                 .post(class="col-md-8 col-md-offset-2")
-                    form(action="/new" method="post")
-                        input(type="text" name="fname")
-                        textarea(type="text" class="text-input" placeholder="Enter your most private thoughts here..." name="lname")
+                    form(action="/post/#{post.firstName}/edit" method="post")
+                        input(type="text" name="fname" value="#{post.firstName}")
+                        textarea(type="text" class="text-input" name="lname")=post.lastName
                         input(type="submit" value="Publish" class="btn btn-default btn-lg")
             .row(class="footer")
                 .col-md-10(class="col-md-offset-1")
-    script(src="https://tinymce.cachefly.net/4.1/tinymce.min.js")
-    script.
-        tinymce.init({selector:'textarea'});
+        script(src="https://tinymce.cachefly.net/4.1/tinymce.min.js")
+        script.
+            tinymce.init({selector:'textarea'});

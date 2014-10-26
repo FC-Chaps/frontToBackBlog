@@ -33,8 +33,7 @@ module.exports = {
         });
     },
     getLogin: function (req, res) {
-        //create a login jade!
-        res.view("login.jade")
+        res.view("login.jade");
     },
     login: function (req, res) {
         var db = req.server.plugins["hapi-mongodb"].db;
@@ -44,20 +43,23 @@ module.exports = {
             if(err){
                 //Change to correct error
                 console.log(err)
-                return res.view("404.swig");
+                return res.view("404.jade");
             }
             var user = match[0];
             if(user){
                 bcrypt.compare(req.payload.password, user.password, function(err, same){
-                    if(same){req.auth.session.set({"username": user.username}); 
+                    if(same){
+                        req.auth.session.set({
+                            username: user.username
+                        }); 
                         return res.redirect("/");
                     } else {
-                        return res.view("404.swig");
+                        return res.view("404.jade");
                     }
                 });
             }else {
                 // Change to correct error
-                return res.view("404.swig");
+                return res.view("404.jade");
             }
         })
     },
@@ -71,11 +73,15 @@ module.exports = {
                 bcrypt.hash(req.payload.password, salt, function(err2, hash){
                     var newUser = {
                         username: req.payload.username,
-                        password: hash
+                        password: hash,
+                        admin: false,
+                        verified: false
                     }
                     db.collection("users")
                     .insert(newUser, function(err, item){
-                        req.auth.session.set({"username": newUser.username});
+                        req.auth.session.set({
+                            username: newUser.username
+                        });
                         res.redirect("/");
                     });
                 })
@@ -85,8 +91,8 @@ module.exports = {
     folderServe: {
         directory: {
             path: 'public',
-            listing: true
+            listing: false,
+            index: false
         }
-    }
+    },
 };
-

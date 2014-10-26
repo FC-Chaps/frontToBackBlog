@@ -14,7 +14,7 @@ html
                             form(action="/")
                                 input(type="submit" value="<- Home")
                         button(type="button" class="btn btn-default btn-lg")
-                            form(action="/edit")
+                            form(action="/post/#{post.firstName}/edit" method="get")
                                 input(type="submit" value="Edit Post")
                         button(type="button" class="btn btn-default btn-lg")
                             form(action="/post")
@@ -28,5 +28,9 @@ html
                 .col-md-10(class="col-md-offset-1")
                     h3.
                         #{post.firstName}
+                    p
+                        !{post.lastName}
                     p.
-                        #{post.lastName}
+                        written by: #{post.author}
+                    p.
+                        on: #{post.date}

@@ -124,4 +124,12 @@ module.exports = [
         },
         handler: privHandler.toggleVerified
     },
+    {
+        method: "GET",
+        path: "/user/{username}/delete",
+        config: {
+            auth: "session"
+        },
+        handler: privHandler.deleteUser
+    }
 ];

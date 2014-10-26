@@ -129,5 +129,12 @@ module.exports = {
                 });
             }
         })
+    },
+    deleteUser: function (req, res) {
+        var db = req.server.plugins["hapi-mongodb"].db;
+        db.collection("users")
+        .remove({username: req.params.username}, function(err, item) {
+            res.redirect("/admin/home");
+        });
     }
 };

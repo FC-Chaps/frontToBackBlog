@@ -2,18 +2,7 @@
 var hapi = require('hapi');
 //For validation
 var joi = require('joi');
-var server = hapi.createServer( process.env.PORT || 8080, {
-	cache: {
-		engine: require("catbox-mongodb"),
-		options: {
-			host: "linus.mongohq.com",
-			port: 10089,
-			username: "hapi",
-			password: "tester",
-			partition: "chaps-twitter"
-		}
-	}
-});
+var server = hapi.createServer( process.env.PORT || 8080);
 var routes = require('./routes/routes.js');
 var cookieOptions = require('./config/cookie.js');
 
@@ -42,10 +31,7 @@ server.views({
 
 server.route(routes);
 
-if(!module.parent){
+
 	server.start(function () {
 	    console.log('server up and running at: ', server.info.uri);
-	});
-}
 
-module.exports = server;

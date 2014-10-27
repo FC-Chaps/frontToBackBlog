@@ -8,6 +8,13 @@ module.exports = [
     {
         path: '/',
         method: 'GET',
+        config: {
+            auth: {
+                strategy: "session",
+                mode: "try"
+            },
+            plugins: { 'hapi-auth-cookie': { redirectTo: false } }
+        },
         handler: pubHandler.home
     },
     //Serves static images, css, and javascript
@@ -17,7 +24,7 @@ module.exports = [
         handler: pubHandler.folderServe
     },
     {
-        path: '/post/{name}',
+        path: '/post/{id}',
         method: 'GET',
         handler: pubHandler.single
     },
@@ -28,7 +35,7 @@ module.exports = [
         config: {
             auth: "session"
         },
-        handler: pubHandler.newPost
+        handler: privHandler.newPost
     },
 
     // All Routes below require User authentication
@@ -42,16 +49,16 @@ module.exports = [
     },
 
     {
-        path: '/post/{name}/edit',
+        path: '/post/{id}/edit',
         method: 'GET',
-        config: {
+        config: {   
             auth: "session"
         },
         handler: privHandler.editPost
     },
 
     {
-        path: '/post/{name}/edit',
+        path: '/post/{id}/edit',
         method: 'POST',
         config: {
             auth: "session"
@@ -76,7 +83,7 @@ module.exports = [
     },
     {
         method: "GET",
-        path: "/post/{name}/delete",
+        path: "/post/{id}/delete",
         config: {
             auth: "session"
         },
@@ -110,7 +117,7 @@ module.exports = [
     },
     {
         method: "GET",
-        path: "/user/{username}/admin",
+        path: "/user/{id}/admin",
         config: {
             auth: "session"
         },
@@ -118,7 +125,7 @@ module.exports = [
     },
     {
         method: "GET",
-        path: "/user/{username}/verified",
+        path: "/user/{id}/verified",
         config: {
             auth: "session"
         },
@@ -126,10 +133,18 @@ module.exports = [
     },
     {
         method: "GET",
-        path: "/user/{username}/delete",
+        path: "/user/{id}/delete",
         config: {
             auth: "session"
         },
         handler: privHandler.deleteUser
-    }
+    },
+    {
+        method: "GET",
+        path: "/login/facebook",
+        config: {
+            auth: "facebook"
+        },
+        handler: pubHandler.loginFacebook
+    },
 ];

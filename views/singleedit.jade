@@ -21,7 +21,7 @@ html
                     img.img-responsive(src="/img/joey-t.jpg")
             .row
                 .post(class="col-md-8 col-md-offset-2")
-                    form(action="/post/#{post.firstName}/edit" method="post")
+                    form(action="/post/#{post.id}/edit" method="post")
                         input(type="text" name="fname" value="#{post.firstName}")
                         textarea(type="text" class="text-input" name="lname")=post.lastName
                         input(type="submit" value="Publish" class="btn btn-default btn-lg")

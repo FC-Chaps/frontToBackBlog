@@ -26,21 +26,21 @@ html
                                         #{user.username}
                                 if user.admin == true
                                     p
-                                        a(href="/user/#{user.username}/admin").
+                                        a(href="/user/#{user.id}/admin").
                                             remove admin status
                                 else    
                                     p
-                                        a(href="/user/#{user.username}/admin").
+                                        a(href="/user/#{user.id}/admin").
                                             add admin status
                                 if user.verified == true
                                     p
-                                        a(href="/user/#{user.username}/verified").
+                                        a(href="/user/#{user.id}/verified").
                                             unverify user
                                 else
                                     p
-                                        a(href="/user/#{user.username}/verified").
+                                        a(href="/user/#{user.id}/verified").
                                             verify user
                                 p
-                                    a(href="/user/#{user.username}/delete").
+                                    a(href="/user/#{user.id}/delete").
                                         delete user
 

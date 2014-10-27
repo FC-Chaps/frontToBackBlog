@@ -26,14 +26,14 @@ html
                         each post in posts
                                 li
                                     h3
-                                        a(href="/post/#{post.firstName}").
+                                        a(href="/post/#{post.id}").
                                             #{post.firstName}
                                         p.
                                             #{post.author}
                                         p.
                                             #{post.date}
                                     if auth == true
-                                        a(href="/post/#{post.firstName}/delete" id="deletepost").
+                                        a(href="/post/#{post.id}/delete" id="deletepost").
                                             delete
 
 
@@ -45,5 +45,7 @@ html
                     if auth == false
                         a(href="/login" id="login").
                             login
+                        a(href="/login/facebook" id="login").
+                            facebook
                         a(href="/signup" id="signup").
                                 signup

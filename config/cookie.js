@@ -1,7 +1,7 @@
 module.exports = {
 	password: "hello",
 	cookie: "loggedin",
-	domain: "0.0.0.0",
+	domain: "fronttoback.herokuapp.com",
 	isSecure: false,
 	redirectTo: "/"
 }

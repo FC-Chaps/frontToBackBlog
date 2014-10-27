@@ -2,7 +2,7 @@
 var hapi = require('hapi');
 //For validation
 var joi = require('joi');
-var server = hapi.createServer('localhost', 8080, {
+var server = hapi.createServer( process.env.PORT || 8080, {
 	cache: {
 		engine: require("catbox-mongodb"),
 		options: {

@@ -2,37 +2,18 @@
 var hapi = require('hapi');
 //For validation
 var joi = require('joi');
-var server = hapi.createServer('localhost', 8080);
+
+var pack = new hapi.Pack();
+var server1 = pack.server('localhost', 8080);
+
 var routes = require('./routes/routes.js');
 var cookieOptions = require('./config/cookie.js');
 
 //For Logging
-var Good = require('good');
+var loggingOptions = require('./test/logopts.js');
 
-var loggingOptions = {
-    opsInterval: 2000,
-    reporters: [{
-        reporter: Good.GoodConsole
-    }, {
-        reporter: Good.GoodFile,
-        args: ['./test/awesome_log', {
-            events: {
-                request: '*',
-                error: '*'
-            }
-        }]
-    }, {
-        reporter: require('good-http'),
-        args: ['http://localhost:3000', {
-            events: {
-                error: '*'
-            },
-            threshold: 20,
-        }]
-    }]
-};
 
-server.pack.register({
+pack.register({
     plugin: require('good'),
     options: loggingOptions
 }, function (err) {
@@ -42,8 +23,7 @@ server.pack.register({
    }
 });
 
-
-server.pack.register({
+pack.register({
 	plugin: require("hapi-mongodb"),
 	options: {
 		"url": process.env.MONGO_URI || require("./keys/mongouri.js"),
@@ -55,13 +35,13 @@ server.pack.register({
 	}
 }, function(err){console.log(err)});
 
-server.pack.register([
+pack.register([
 	{plugin: require("hapi-auth-cookie")},
 	{plugin: require("bell")}], function(err){
 		
-	server.auth.strategy("session", "cookie", cookieOptions);
+	server1.auth.strategy("session", "cookie", cookieOptions);
 
-	server.auth.strategy("facebook", "bell", {
+	server1.auth.strategy("facebook", "bell", {
         provider: 'facebook',
         password: 'hapiauth',
         clientId: '380752878758574', // fill in your FB ClientId here
@@ -70,19 +50,19 @@ server.pack.register([
     });
 });
 
-server.views({
+server1.views({
     engines: {
         jade: require('jade')
     },
     path: './views'
 });
 
-server.route(routes);
+server1.route(routes);
 
 if(!module.parent){
-	server.start(function () {
-	    console.log('server up and running at: ', server.info.uri);
+	pack.start(function () {
+	    console.log('Pack is up and running');
     });
 }
 
-module.exports = server;
+module.exports = pack;

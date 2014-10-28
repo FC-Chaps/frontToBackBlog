@@ -55,8 +55,19 @@ server.pack.register({
 	}
 }, function(err){console.log(err)});
 
-server.pack.register(require("hapi-auth-cookie"), function(err){
+server.pack.register([
+	{plugin: require("hapi-auth-cookie")},
+	{plugin: require("bell")}], function(err){
+		
 	server.auth.strategy("session", "cookie", cookieOptions);
+
+	server.auth.strategy("facebook", "bell", {
+        provider: 'facebook',
+        password: 'hapiauth',
+        clientId: '380752878758574', // fill in your FB ClientId here
+        clientSecret: 'b3b102b75e05934f63078f0bba72d3ac', // fill in your FB Client Secret here
+        isSecure: false // Terrible idea but required if not using HTTPS
+    });
 });
 
 server.views({

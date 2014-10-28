@@ -4,13 +4,13 @@ module.exports = {
         var db = req.server.plugins["hapi-mongodb"].db;
         db.collection("users")
         .find({
-            username: req.state.loggedin.username
+            id: req.state.loggedin.id
         })
         .toArray(function (err, user) {
             if(user[0] && user[0].verified){
                 db.collection("posts")
                 .find({
-                    firstName: req.params.name
+                    id: req.params.id
                 })
                 .toArray(function (err2, dbPosts) {     
                     res.view("singleedit.jade", {
@@ -22,25 +22,62 @@ module.exports = {
                 res.view("401.jade");
             }
         })
-
+    },
+    newPost: function (req, res) {
+        var db = req.server.plugins["hapi-mongodb"].db;
+        db.collection("users")
+        .find({
+            id: req.state.loggedin.id
+        })
+        .toArray(function (err, user) {
+            if(user[0] && user[0].verified){
+                res.view('single.jade', {
+                    title: 'Create'
+                });
+            } else {
+                res.redirect("401.jade");
+            }
+        });
     },
     publish: function (req, res) {
         var db = req.server.plugins["hapi-mongodb"].db;
-        db.collection("posts")
-        .insert({
-            firstName: req.payload.fname,
-            lastName: req.payload.lname,
-            author: req.state.loggedin.username,
-            date: new Date()
-        }, function(err, item) {res.redirect("/")});
+        db.collection("users")
+        .find({
+            id: req.state.loggedin.id
+        })
+        .toArray(function (err, user) {
+            if(user[0] && user[0].verified){
+                db.collection("posts")
+                .insert({
+                    firstName: req.payload.fname,
+                    lastName: req.payload.lname,
+                    author: req.state.loggedin.username,
+                    date: new Date(),
+                    id: "pid" + new Date().getTime()
+                }, function(err, item) {res.redirect("/")});
+            } else {
+                res.view("401.jade");
+            }
+        });
     },
     deletePost: function (req, res) {
         var db = req.server.plugins["hapi-mongodb"].db;
-        db.collection("posts").remove({
-            firstName: req.params.name
-        }, function(err, item) {
-            res.redirect("/");
+        db.collection("users")
+        .find({
+            id: req.state.loggedin.id
         })
+        .toArray(function (err, user) {
+            if(user[0] && user[0].verified){
+                db.collection("posts")
+                .remove({
+                    id: req.params.id
+                }, function(err, item) {
+                    res.redirect("/");
+                })
+            } else {
+                res.view("401.jade");
+            }
+        });
     },
     logout: function (req, res) {
         req.auth.session.clear();
@@ -49,7 +86,7 @@ module.exports = {
     updatePost: function (req, res) {
         var db = req.server.plugins["hapi-mongodb"].db;
         db.collection("posts")
-        .update({firstName: req.params.name}, {
+        .update({id: req.params.id}, {
             firstName: req.payload.fname,
             lastName: req.payload.lname
         }, function(err, count, status){res.redirect("/")});
@@ -60,7 +97,7 @@ module.exports = {
         if(req.state.loggedin){
             //find user in DB
             db.collection("users")
-            .find({username:req.state.loggedin.username})
+            .find({id:req.state.loggedin.id})
             .toArray(function(err, user){
                 if(user[0]){
                 //if they are not admin then error
@@ -89,18 +126,18 @@ module.exports = {
     toggleAdmin: function (req, res) {
         var db = req.server.plugins["hapi-mongodb"].db;
         db.collection("users")
-        .find({username: req.params.username})
+        .find({id: req.params.id})
         .toArray(function (err, user) {
             if(!user[0].admin){
                 db.collection("users")
-                .update({username: req.params.username}, {
+                .update({id: req.params.id}, {
                     $set: { admin: true }
                 }, function (err2, updated) {
                     res.redirect("/admin/home");
                 });
             } else {
                 db.collection("users")
-                .update({username: req.params.username}, {
+                .update({id: req.params.id}, {
                     $set: { admin: false }
                 }, function (err2, updated) {
                     res.redirect("/admin/home");
@@ -111,18 +148,18 @@ module.exports = {
     toggleVerified: function (req, res) {
         var db = req.server.plugins["hapi-mongodb"].db;
         db.collection("users")
-        .find({username: req.params.username})
+        .find({id: req.params.id})
         .toArray(function (err, user) {
             if(!user[0].verified){
                 db.collection("users")
-                .update({username: req.params.username}, {
+                .update({id: req.params.id}, {
                     $set: { verified: true }
                 }, function (err2, updated) {
                     res.redirect("/admin/home");
                 });
             } else {
                 db.collection("users")
-                .update({username: req.params.username}, {
+                .update({id: req.params.id}, {
                     $set: { verified: false }
                 }, function (err2, updated) {
                     res.redirect("/admin/home");
@@ -133,7 +170,7 @@ module.exports = {
     deleteUser: function (req, res) {
         var db = req.server.plugins["hapi-mongodb"].db;
         db.collection("users")
-        .remove({username: req.params.username}, function(err, item) {
+        .remove({id: req.params.id}, function(err, item) {
             res.redirect("/admin/home");
         });
     }

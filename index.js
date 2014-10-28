@@ -2,20 +2,46 @@
 var hapi = require('hapi');
 //For validation
 var joi = require('joi');
-var server = hapi.createServer('localhost', 8080, {
-	cache: {
-		engine: require("catbox-mongodb"),
-		options: {
-			host: "linus.mongohq.com",
-			port: 10089,
-			username: "hapi",
-			password: "tester",
-			partition: "chaps-twitter"
-		}
-	}
-});
+var server = hapi.createServer('localhost', 8080);
 var routes = require('./routes/routes.js');
 var cookieOptions = require('./config/cookie.js');
+
+//For Logging
+var Good = require('good');
+
+var loggingOptions = {
+    opsInterval: 2000,
+    reporters: [{
+        reporter: Good.GoodConsole
+    }, {
+        reporter: Good.GoodFile,
+        args: ['./test/awesome_log', {
+            events: {
+                request: '*',
+                error: '*'
+            }
+        }]
+    }, {
+        reporter: require('good-http'),
+        args: ['http://localhost:3000', {
+            events: {
+                error: '*'
+            },
+            threshold: 20,
+        }]
+    }]
+};
+
+server.pack.register({
+    plugin: require('good'),
+    options: loggingOptions
+}, function (err) {
+   if (err) {
+      console.log(err);
+      return;
+   }
+});
+
 
 server.pack.register({
 	plugin: require("hapi-mongodb"),
@@ -45,7 +71,7 @@ server.route(routes);
 if(!module.parent){
 	server.start(function () {
 	    console.log('server up and running at: ', server.info.uri);
-	});
+    });
 }
 
 module.exports = server;

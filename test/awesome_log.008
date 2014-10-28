@@ -1,1 +1,0 @@
-{"event":"request","timestamp":1414499386453,"id":"1414499386453-8690-10748","instance":"http://localhost:8081","labels":[],"method":"get","path":"/","query":{},"source":{"remoteAddress":"127.0.0.1","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.104 Safari/537.36"},"responseTime":18,"statusCode":404,"pid":8690}

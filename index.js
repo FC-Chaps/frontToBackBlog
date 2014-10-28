@@ -2,14 +2,12 @@
 var hapi = require('hapi');
 //For validation
 var joi = require('joi');
-<<<<<<< HEAD
-var server = hapi.createServer( process.env.PORT || 8080);
-=======
 
 var pack = new hapi.Pack();
-var server1 = pack.server('localhost', 8080);
+var server1 = pack.server(process.env.PORT || 8080);
+var server2 = pack.server(process.env.PORT || 8081);
 
->>>>>>> 043b142e1c218853deff3d9cdffd3e7d9f7ec3d3
+
 var routes = require('./routes/routes.js');
 var cookieOptions = require('./config/cookie.js');
 
@@ -64,12 +62,6 @@ server1.views({
 
 server1.route(routes);
 
-<<<<<<< HEAD
-
-server.start(function () {
-    console.log('server up and running at: ', server.info.uri);
-});
-=======
 if(!module.parent){
 	pack.start(function () {
 	    console.log('Pack is up and running');
@@ -77,4 +69,4 @@ if(!module.parent){
 }
 
 module.exports = pack;
->>>>>>> 043b142e1c218853deff3d9cdffd3e7d9f7ec3d3
+

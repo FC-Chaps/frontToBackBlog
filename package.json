@@ -6,6 +6,8 @@
   "dependencies": {
     "bell": "^1.2.0",
     "catbox-mongodb": "^1.0.5",
+    "good": "^3.1.0",
+    "good-http": "^2.0.0",
     "hapi": "^7.0.0",
     "hapi-mongodb": "^2.2.0",
     "jade": "^1.7.0",
@@ -13,7 +15,7 @@
   },
   "devDependencies": {
     "lab": "4.x.x"
-    },
+  },
   "scripts": {
     "test": "make test-cov"
   },

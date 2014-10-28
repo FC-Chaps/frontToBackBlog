@@ -91,7 +91,7 @@ module.exports = {
         .find({username:username})
         .toArray(function(err, user){
             if(user.length >= 1) {
-                req.auth.session.set({username: user[0].username});
+                req.auth.session.set({id: user[0].id});
                 res.redirect("/");
             } else {
                 db.collection("users")

@@ -42,6 +42,7 @@ pack.register([
 	server1.auth.strategy("session", "cookie", cookieOptions);
 
 	server1.auth.strategy("facebook", "bell", {
+
         provider: 'facebook',
         password: 'hapiauth',
         clientId: '380752878758574', // fill in your FB ClientId here

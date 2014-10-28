@@ -10,7 +10,7 @@ module.exports = {
                 title: "The Chaps Blog",
                 description: "Welcome to the Chaps blog",
                 posts: dbPosts,
-                auth: req.state.hasOwnProperty("loggedin")
+                auth: req.state.hasOwnProperty("loggedin") 
             })  
         });
     },
@@ -18,18 +18,13 @@ module.exports = {
         var db = req.server.plugins["hapi-mongodb"].db;
         db.collection("posts")
         .find({
-            firstName: req.params.name
+            id: req.params.id
         })
         .toArray(function (err2, dbPosts) {     
             res.view("viewsingle.jade", {
                 title: "Posts",
                 post: dbPosts[0]
             })
-        });
-    },
-    newPost: function (req, res) {
-        res.view('single.jade', {
-            title: 'Create'
         });
     },
     getLogin: function (req, res) {
@@ -50,7 +45,7 @@ module.exports = {
                 bcrypt.compare(req.payload.password, user.password, function(err, same){
                     if(same){
                         req.auth.session.set({
-                            username: user.username
+                            id: user.id
                         }); 
                         return res.redirect("/");
                     } else {
@@ -75,18 +70,42 @@ module.exports = {
                         username: req.payload.username,
                         password: hash,
                         admin: false,
-                        verified: false
+                        verified: false,
+                        id: "uid" + new Date().getTime()
                     }
                     db.collection("users")
                     .insert(newUser, function(err, item){
                         req.auth.session.set({
-                            username: newUser.username
+                            id: newUser.id
                         });
                         res.redirect("/");
                     });
                 })
             })
         }    
+    },
+    loginFacebook: function (req, res) {
+        var username = req.auth.credentials.profile.email.split("@")[0];
+        var db = req.server.plugins["hapi-mongodb"].db;
+        db.collection("users")
+        .find({username:username})
+        .toArray(function(err, user){
+            if(user.length >= 1) {
+                req.auth.session.set({id: user[0].id});
+                res.redirect("/");
+            } else {
+                db.collection("users")
+                .insert({
+                    username: username,
+                    admin: false,
+                    verified: false,
+                    id: "uid" + new Date().getTime()
+                }, function(err, item){
+                    req.auth.session.set({id: item.id});
+                    res.redirect("/");
+                })
+            }
+        })
     },
     folderServe: {
         directory: {

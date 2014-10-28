@@ -8,7 +8,9 @@ module.exports = [
     {
         path: '/',
         method: 'GET',
-        handler: pubHandler.home
+        options:{
+                    handler: pubHandler.home
+                
     },
     //Serves static images, css, and javascript
     {

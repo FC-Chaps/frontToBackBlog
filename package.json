@@ -4,6 +4,7 @@
   "description": "CMS created with Hapi",
   "main": "index.js",
   "dependencies": {
+    "catbox-memory": "^1.1.0",
     "catbox-mongodb": "^1.0.5",
     "hapi": "^7.0.0",
     "hapi-mongodb": "^2.2.0",

@@ -4,7 +4,9 @@ var hapi = require('hapi');
 var joi = require('joi');
 
 var pack = new hapi.Pack();
-var server1 = pack.server('localhost', 8080, { cors: true });
+
+var server1 = pack.server(process.env.PORT || 8080,{ cors: true });
+
 
 var routes = require('./routes/routes.js');
 var authOptions = require('./config/authOptions.js');
@@ -22,6 +24,15 @@ pack.register({
       return;
    }
 });
+
+pack.register({
+  plugin: require('./comments-plugin'),
+}, function (err) {
+   if (err) {
+      console.log(err);
+      return;
+   }
+})
 
 pack.register({
 	plugin: require("hapi-mongodb"),
@@ -60,3 +71,4 @@ if(!module.parent){
 }
 
 module.exports = pack;
+

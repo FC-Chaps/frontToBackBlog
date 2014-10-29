@@ -13,7 +13,7 @@ module.exports = [
                 strategy: "session",
                 mode: "try"
             },
-            plugins: { 'hapi-auth-cookie': { redirectTo: false } }
+            plugins: {'hapi-auth-cookie': {redirectTo: false}}
         },
         handler: pubHandler.home
     },

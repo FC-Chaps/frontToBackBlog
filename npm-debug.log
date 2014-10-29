@@ -1,84 +1,20 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'join@4.7.x', '--save' ]
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'good', 'good-http' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.32
-4 warn package.json hapiblog@0.0.1 No repository field.
-5 warn package.json hapiblog@0.0.1 No README data
-6 verbose readDependencies using package.json deps
-7 verbose cache add [ 'join@4.7.x', null ]
-8 verbose cache add name=undefined spec="join@4.7.x" args=["join@4.7.x",null]
-9 verbose parsed url { protocol: null,
-9 verbose parsed url   slashes: null,
-9 verbose parsed url   auth: null,
-9 verbose parsed url   host: null,
-9 verbose parsed url   port: null,
-9 verbose parsed url   hostname: null,
-9 verbose parsed url   hash: null,
-9 verbose parsed url   search: null,
-9 verbose parsed url   query: null,
-9 verbose parsed url   pathname: 'join@4.7.x',
-9 verbose parsed url   path: 'join@4.7.x',
-9 verbose parsed url   href: 'join@4.7.x' }
-10 verbose cache add name="join" spec="4.7.x" args=["join","4.7.x"]
-11 verbose parsed url { protocol: null,
-11 verbose parsed url   slashes: null,
-11 verbose parsed url   auth: null,
-11 verbose parsed url   host: null,
-11 verbose parsed url   port: null,
-11 verbose parsed url   hostname: null,
-11 verbose parsed url   hash: null,
-11 verbose parsed url   search: null,
-11 verbose parsed url   query: null,
-11 verbose parsed url   pathname: '4.7.x',
-11 verbose parsed url   path: '4.7.x',
-11 verbose parsed url   href: '4.7.x' }
-12 verbose addNamed [ 'join', '4.7.x' ]
-13 verbose addNamed [ null, '>=4.7.0-0 <4.8.0-0' ]
-14 silly lockFile a25798a2-join-4-7-x join@4.7.x
-15 verbose lock join@4.7.x /Users/harryfox/.npm/a25798a2-join-4-7-x.lock
-16 silly addNameRange { name: 'join', range: '>=4.7.0-0 <4.8.0-0', hasData: false }
-17 verbose request where is /join
-18 verbose request registry https://registry.npmjs.org/
-19 verbose request id 2e2f3a78d7822602
-20 verbose url raw /join
-21 verbose url resolving [ 'https://registry.npmjs.org/', './join' ]
-22 verbose url resolved https://registry.npmjs.org/join
-23 verbose request where is https://registry.npmjs.org/join
-24 info trying registry request attempt 1 at 11:46:35
-25 http GET https://registry.npmjs.org/join
-26 http 200 https://registry.npmjs.org/join
-27 silly registry.get cb [ 200,
-27 silly registry.get   { date: 'Wed, 22 Oct 2014 10:46:35 GMT',
-27 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-27 silly registry.get     etag: '"4HO56T8P18B7Z31NZBR92BDG8"',
-27 silly registry.get     'content-type': 'application/json',
-27 silly registry.get     'cache-control': 'max-age=60',
-27 silly registry.get     'content-length': '17422',
-27 silly registry.get     'accept-ranges': 'bytes',
-27 silly registry.get     via: '1.1 varnish',
-27 silly registry.get     age: '0',
-27 silly registry.get     'x-served-by': 'cache-ams4129-AMS',
-27 silly registry.get     'x-cache': 'MISS',
-27 silly registry.get     'x-cache-hits': '0',
-27 silly registry.get     'x-timer': 'S1413974795.585537,VS0,VE314',
-27 silly registry.get     vary: 'Accept',
-27 silly registry.get     'keep-alive': 'timeout=10, max=50',
-27 silly registry.get     connection: 'Keep-Alive' } ]
-28 silly addNameRange number 2 { name: 'join', range: '>=4.7.0-0 <4.8.0-0', hasData: true }
-29 silly addNameRange versions [ 'join', [ '2.1.1', '2.3.0', '2.3.1', '2.3.2', '3.0.0' ] ]
-30 silly lockFile a25798a2-join-4-7-x join@4.7.x
-31 silly lockFile a25798a2-join-4-7-x join@4.7.x
-32 error notarget No compatible version found: join@'>=4.7.0-0 <4.8.0-0'
-32 error notarget Valid install targets:
-32 error notarget ["2.1.1","2.3.0","2.3.1","2.3.2","3.0.0"]
-32 error notarget
-32 error notarget This is most likely not a problem with npm itself.
-32 error notarget In most cases you or one of your dependencies are requesting
-32 error notarget a package version that doesn't exist.
-33 error System Darwin 13.3.0
-34 error command "node" "/usr/local/bin/npm" "install" "join@4.7.x" "--save"
-35 error cwd /Users/harryfox/Documents/FAC Projects/hapiblog
-36 error node -v v0.10.32
-37 error npm -v 1.4.28
-38 error code ETARGET
-39 verbose exit [ 1, true ]
+4 error Failed to parse json
+4 error Unexpected token <
+5 error File: /Users/benjaminlees/Documents/frontToBackBlog/frontToBackBlog/package.json
+6 error Failed to parse package.json data.
+6 error package.json must be actual JSON, not just JavaScript.
+6 error
+6 error This is not a bug in npm.
+6 error Tell the package author to fix their package.json file. JSON.parse
+7 error System Darwin 13.3.0
+8 error command "node" "/usr/local/bin/npm" "install" "good" "good-http"
+9 error cwd /Users/benjaminlees/Documents/frontToBackBlog/frontToBackBlog
+10 error node -v v0.10.32
+11 error npm -v 1.4.28
+12 error file /Users/benjaminlees/Documents/frontToBackBlog/frontToBackBlog/package.json
+13 error code EJSONPARSE
+14 verbose exit [ 1, true ]

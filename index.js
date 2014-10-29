@@ -72,7 +72,7 @@ server.start(function () {
 =======
 if(!module.parent){
 	pack.start(function () {
-	    console.log('Pack is up and running');
+	    console.log('Pack is up and running' + '\n' + 'Main Server is at ' + server1.info.uri);
     });
 }
 

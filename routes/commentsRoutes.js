@@ -1,4 +1,4 @@
-var commentHandler = require('./commentsHandlers.js');
+var commentHandler = require('../handlers/commentsHandlers.js');
 
 
 module.exports = [
@@ -8,7 +8,7 @@ module.exports = [
 		config: {
 	   		handler: commentHandler.cacheComments,
 		    cache: {
-		    	 expiresIn: 8000000000
+		    	 expiresIn: 80000000
 		    }
 		}
 	},

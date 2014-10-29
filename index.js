@@ -7,7 +7,7 @@ var pack = new hapi.Pack();
 var server1 = pack.server(process.env.PORT || 8080);
 var server2 = pack.server(process.env.PORT || 8081);
 
-
+var commentsRoutes = require('./commentsRoutes.js');
 var routes = require('./routes/routes.js');
 var cookieOptions = require('./config/cookie.js');
 

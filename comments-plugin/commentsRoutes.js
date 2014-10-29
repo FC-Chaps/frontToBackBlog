@@ -3,7 +3,7 @@ var commentHandler = require('./commentsHandlers.js');
 
 module.exports = [
 	{
-		path: "./getComments",
+		path: "/getComments",
 		method: "GET",
 		config: {
 	   		handler: commentHandler.cacheComments,
@@ -13,7 +13,7 @@ module.exports = [
 		}
 	},
 	{
-		path: "./postComments",
+		path: "/postComments",
 		method: "POST",
 	   	handler: commentHandler.postComments
 	}

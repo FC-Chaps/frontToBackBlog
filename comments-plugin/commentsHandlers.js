@@ -5,7 +5,9 @@ module.exports = {
 	 	var db = req.server.plugins["hapi-mongodb"].db;
 	    db.collection("comments")
 	    .find().toArray(function (err, data){
-	    	res(data[0]);
+	    	console.log(data);
+	    	
+	    	res({comments: data});
 	    })
 	},
 	postComments: function (req, res){

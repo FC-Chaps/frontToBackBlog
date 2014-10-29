@@ -12,8 +12,10 @@ module.exports = [
             auth: {
                 strategy: "session",
                 mode: "try"
-            }
-        }
+            },
+            plugins: {'hapi-auth-cooke': {redirectTo: false}}
+        },
+        handler: pubHandler.home
     },
     //Serves static images, css, and javascript
     {

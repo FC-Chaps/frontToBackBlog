@@ -1,10 +1,10 @@
 
 $(document).on("ready", function(){
-   getCommentsFromCache("http://frontoback.herokuapp.com/getComments")
+   getCommentsFromCache("http://0.0.0.0:8080/getComments")
 })
 
 $("#commentsButton").on("click", function(){
-   pushCommentsToMongo("http://frontoback.herokuapp.com/postComments")
+   pushCommentsToMongo("http://0.0.0.0:8080/postComments")
 })
 
 
@@ -14,10 +14,12 @@ function getCommentsFromCache (url){
         dataType: "JSON",
         url: url,
         success: function (data) {
-            for(var i = data.length; i < data.length; i --){
-                $("#comments").append("<div><p class = 'username' id = 'username" + i "' ></p><p class = 'contents' id = 'content" + i "'></p><p class = 'time'></p></div>")
-                 $("#username" + i ).append(data[i].username);   
-                 $("#content" + i ).append(data[i].content); 
+            console.log(data.comments[0]);
+            for(var i = 0; i >= data.comments.length-1; i+=1){
+                $(".comments").append("<div><p class = 'username' id = 'username" + i + "' ></p><p class = 'contents' id = 'content" + i + "'></p><p class = 'time'></p></div>")
+                 $("#username" + i ).append(data.comments[i].username);   
+                 $("#content" + i ).append(data.comments[i].content); 
+                 console.log("popp")
             } 
         },
         error: function (error) {
@@ -31,7 +33,7 @@ function pushCommentsToMongo (url){
         data:{
                 user_name: $('#username').val(),
                 comment_content: $('#content').val(),
-                },,
+                },
         dataType: "JSON",
         url: url,
         success: function (data) {

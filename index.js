@@ -5,9 +5,7 @@ var joi = require('joi');
 
 var pack = new hapi.Pack();
 var server1 = pack.server(process.env.PORT || 8080);
-var server2 = pack.server(process.env.PORT || 8081);
 
-var commentsRoutes = require('./commentsRoutes.js');
 var routes = require('./routes/routes.js');
 var cookieOptions = require('./config/cookie.js');
 
@@ -24,6 +22,15 @@ pack.register({
       return;
    }
 });
+
+pack.register({
+  plugin: require('./comments-plugin'),
+}, function (err) {
+   if (err) {
+      console.log(err);
+      return;
+   }
+})
 
 pack.register({
 	plugin: require("hapi-mongodb"),

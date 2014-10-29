@@ -12,8 +12,8 @@ module.exports = {
 		var db = req.server.plugins["hapi-mongodb"].db;
 	    db.collection("comments")
 	    .insert({
-	    	name: "benji",
-            comment: "whats going on"
+	    	username: req.payload.user_name,
+	    	content: req.payload.comment_content,
         },function(err, item) {res.redirect("/")}
     	);
 	}

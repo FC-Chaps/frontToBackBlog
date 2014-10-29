@@ -1,11 +1,29 @@
+var writeToDom = (function(){
+    var counter = 0;
+    return function writeToDom(username, content) {
+        if(typeof username === undefined){
+            var username = "anonymouse";
+        }
+        $(".comments").append("<div><p class = 'username' id = 'username" + counter + "' ></p><p class = 'contents' id = 'content" + counter + "'></p><p class = 'time'></p></div>")
+        $("#username" + counter ).append(username + " says:");   
+        $("#content" + counter ).append(content); 
+        counter+=1
+    }
+}());
 
 $(document).on("ready", function(){
-   getCommentsFromCache("http://0.0.0.0:8080/getComments")
+   getCommentsFromCache("http://0.0.0.0:8080/getComments");
 })
 
 $("#commentsButton").on("click", function(){
-   pushCommentsToMongo("http://0.0.0.0:8080/postComments")
+    var user = $("#username").val()
+    var content = $("#content").val()
+
+    pushCommentsToMongo("http://0.0.0.0:8080/postComments")
+    $("#content").val("");
+    writeToDom(user, content);  
 })
+
 
 
 function getCommentsFromCache (url){
@@ -14,12 +32,10 @@ function getCommentsFromCache (url){
         dataType: "JSON",
         url: url,
         success: function (data) {
-            console.log(data.comments[0]);
-            for(var i = 0; i >= data.comments.length-1; i+=1){
-                $(".comments").append("<div><p class = 'username' id = 'username" + i + "' ></p><p class = 'contents' id = 'content" + i + "'></p><p class = 'time'></p></div>")
-                 $("#username" + i ).append(data.comments[i].username);   
-                 $("#content" + i ).append(data.comments[i].content); 
-                 console.log("popp")
+            $(".comments").empty();
+            console.log(data.comments);
+            for(var i = 0; i <= data.comments.length-1; i+=1){
+                writeToDom(data.comments[i].username, data.comments[i].content);
             } 
         },
         error: function (error) {
@@ -31,13 +47,13 @@ function pushCommentsToMongo (url){
     $.ajax({
         type: "POST",
         data:{
-                user_name: $('#username').val(),
-                comment_content: $('#content').val(),
-                },
+            user_name: $('#username').val(),
+            comment_content: $('#content').val()
+        },
         dataType: "JSON",
         url: url,
-        success: function (data) {
-           
+        complete: function (data) {
+
         },
         error: function (error) {
             console.log(error);

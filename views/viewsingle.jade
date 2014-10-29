@@ -28,7 +28,7 @@ html
                 .col-md-10(class="col-md-offset-1")
                     h3.
                         #{post.firstName}
-                    p
+                    p.
                         !{post.lastName}
                     p.
                         written by: #{post.author}
@@ -36,6 +36,11 @@ html
                         on: #{post.date}
             .row
                 .comments(class="col-md-8 col-md-offset-2")
+            .row
+                .newcomments
+                    textarea(id="content")
+                    button(value="Comment" id="commentsButton").
+                        Comment!
         script(src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js")
         script(src="/js/ajax.js")
 

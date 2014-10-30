@@ -23,7 +23,8 @@ module.exports = {
         .toArray(function (err2, dbPosts) {     
             res.view("viewsingle.jade", {
                 title: "Posts",
-                post: dbPosts[0]
+                post: dbPosts[0],
+                auth: req.state.hasOwnProperty("loggedin")
             })
         });
     },

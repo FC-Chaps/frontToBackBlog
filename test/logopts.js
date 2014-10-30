@@ -6,15 +6,15 @@ module.exports = {
         {
             reporter: Good.GoodConsole
         }, 
-        {
-            reporter: Good.GoodFile,
-            args: ['./test/server_log', {
-                events: {
-                    request: '*',
-                    error: '*'
-                }
-            }]
-        }   
+        // {
+        //     reporter: Good.GoodFile,
+        //     args: ['./test/server_log', {
+        //         events: {
+        //             request: '*',
+        //             error: '*'
+        //         }
+        //     }]
+        // }   
     ]
 };
 

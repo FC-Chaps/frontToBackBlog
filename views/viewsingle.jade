@@ -37,10 +37,16 @@ html
             .row
                 .comments(class="col-md-8 col-md-offset-2")
             .row
-                .newcomments
-                    textarea(id="content")
-                    button(value="Comment" id="commentsButton").
-                        Comment!
+                
+                if auth == true
+                    .newcomments
+                        textarea(id="content")
+                        button(value="Comment" id="commentsButton").
+                            Comment!
+
+                else if auth == false
+                    form(action="/login" method="get")
+                        input(type="submit" value="login to comment")
         script(src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js")
         script(src="/js/ajax.js")
 

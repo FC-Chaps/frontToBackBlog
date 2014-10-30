@@ -24,8 +24,6 @@ $("#commentsButton").on("click", function(){
     writeToDom(user, content);  
 })
 
-
-
 function getCommentsFromCache (url){
     $.ajax({
         type: "GET",

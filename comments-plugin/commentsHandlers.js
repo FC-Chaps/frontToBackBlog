@@ -1,6 +1,4 @@
-
 module.exports = {
-
 	cacheComments: function (req, res){
 	 	var db = req.server.plugins["hapi-mongodb"].db;
 	    db.collection("comments")
@@ -16,7 +14,7 @@ module.exports = {
 	    .insert({
 	    	//username: req.payload.user_name,
 	    	content: req.payload.comment_content,
-        },function(err, item) {res.redirect("/")}
+        }, function(err, item) {res.redirect("/")}
     	);
 	}
 };

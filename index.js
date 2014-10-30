@@ -5,8 +5,8 @@ var joi = require('joi');
 
 var pack = new hapi.Pack();
 
-var server1 = pack.server(process.env.PORT || 8080,{ cors: true });
-
+// Setting cross-origin resource sharing to true allows ajax requests from different URLs
+var server1 = pack.server(process.env.PORT || 8080, { cors: true });
 
 var routes = require('./routes/routes.js');
 var authOptions = require('./config/authOptions.js');
@@ -14,45 +14,29 @@ var authOptions = require('./config/authOptions.js');
 //For Logging
 var loggingOptions = require('./test/logopts.js');
 
-
-pack.register({
-    plugin: require('good'),
-    options: loggingOptions
-}, function (err) {
-   if (err) {
-      console.log(err);
-      return;
-   }
-});
-
-pack.register({
-  plugin: require('./comments-plugin'),
-}, function (err) {
-   if (err) {
-      console.log(err);
-      return;
-   }
+pack.register([require("hapi-auth-cookie"), require("bell")], function(){
+	server1.auth.strategy("session", "cookie", authOptions.cookieOptions);
+	server1.auth.strategy("facebook", "bell", authOptions.facebookOptions);
 })
 
-pack.register({
-	plugin: require("hapi-mongodb"),
-	options: {
+pack.register([
+	{
+		plugin: require('good'),
+		options: loggingOptions
+	},
+	{plugin: require('./comments-plugin')},
+	{
+		plugin: require("hapi-mongodb"),
+		options: {
 		"url": process.env.MONGO_URI || require("./keys/mongouri.js"),
-		settings: {
-			db: {
-				native_parser: false
+			settings: {
+				db: {
+					native_parser: false
+				}
 			}
 		}
-	}
-}, function(err){console.log(err)});
-
-pack.register([
-	{plugin: require("hapi-auth-cookie")},
-	{plugin: require("bell")}], function(err){
-		
-	server1.auth.strategy("session", "cookie", authOptions.cookieOptions);
-
-	server1.auth.strategy("facebook", "bell", authOptions.facebookOptions);
+	}], function(err){
+		if(err){return console.log(err)}
 });
 
 server1.views({
@@ -71,4 +55,3 @@ if(!module.parent){
 }
 
 module.exports = pack;
-

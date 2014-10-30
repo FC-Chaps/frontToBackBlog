@@ -15,6 +15,9 @@ module.exports = [
 	{
 		path: "/postComments",
 		method: "POST",
+		config: {
+			auth: "session"
+		},
 	   	handler: commentHandler.postComments
 	}
 ];

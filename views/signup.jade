@@ -7,9 +7,10 @@ html
     body
         .container-fluid
             .row
-                .col-md-4(class="col-md-offset-4")
+                .col-md-4(class="col-md-offset-4 signup")
+                    h3 Sign Up to to become a contributor 
                     form(action="/signup" method="post")
-                        input(type="text" name="username")
-                        input(type="password" name="password")
-                        input(type="password" name="passwordConfirm")
+                        input(type="text" name="username" placeholder="Username")
+                        input(type="password" name="password" placeHolder="Password")
+                        input(type="password" name="passwordConfirm" placeHolder="Confirm password")
                         input(type="submit" value="sign up!")

@@ -9,12 +9,9 @@ button form input {
     color: rgba(119, 157, 160, 0.71);
     background: #fff;
     padding: 5px;
-    width: 75%;
     font-size: 15px;
     border: none;
     margin: 5px 0; }
-    .header form input:hover {
-      text-decoration: underline; }
 
 .post {
   padding: 0 20px; }
@@ -55,11 +52,41 @@ button form input {
     .list ul li {
       padding: 5px; }
 
+.signup {
+  margin-top: 100px;
+  text-align: center; }
+  .signup form {
+    text-align: center;
+    padding-top: 30px; }
+    .signup form input {
+      width: 100%;
+      margin: 4px 0; }
+      .signup form input:last-child {
+        width: 50%;
+        background-color: #357ae8;
+        padding: 5px;
+        margin-top: 10px;
+        color: #fff;
+        border: 1px solid #3079ed;
+        border-radius: 5px; }
+
 @media (min-width: 992px) {
   .main, .header {
     height: 100vh;
     position: fixed;
-    padding-top: 150px; }
+    padding-top: 150px;
+    padding-left: 0;
+    padding-right: 0; }
+
+  .header {
+    padding-top: 80px; }
+    .header form input {
+      width: 60%;
+      transition: width 0.4s; }
+      .header form input:hover {
+        color: #000;
+        width: 100%;
+        transition: color .3s, width .3s; }
 
   .post {
     padding: 0 50px;

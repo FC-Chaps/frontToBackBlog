@@ -6,20 +6,32 @@ html
         link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css")
         link(rel="stylesheet" href="/css/main.css")
     body
-        a(href="/admin/home" type="button" class="btn btn-default btn-lg")
-            span(class="glyphicon glyphicon-cog"). 
-                 Admin
+        
         .container-fluid
             .row
-                .main(class="col-md-8 col-md-offset-2")
+                .main(class="col-md-4")
                     h2.
                         #{title}
                     p.
                         #{description}
-            .row
-                .list(class="col-md-6 col-md-offset-3")
                     if auth == true
-                        button(type="button" class="btn btn-default btn-lg") 
+
+                        a(href="/logout" id="logout" type="button" class="btn btn-default").
+                            logout
+                   
+                    if auth == false
+                        a(href="/login" id="login" type="button" class="btn btn-default").
+                            login
+                        a(href="/login/facebook" id="login" type="button" class="btn btn-default").
+                            facebook
+                        a(href="/signup" id="signup" type="button" class="btn btn-default").
+                                signup
+                    a(href="/admin/home" type="button" class="btn btn-default")
+                        span(class="glyphicon glyphicon-cog"). 
+                            Admin
+                .list(class="col-md-8 col-md-offset-4")
+                    if auth == true
+                        button(type="button" class="btn btn-default") 
                                 form(action="/new")
                                     input(type="submit" value="+ New Post")
                     ul
@@ -37,15 +49,4 @@ html
                                             delete
 
 
-                    if auth == true
-
-                        a(href="/logout" id="logout").
-                            logout
-                   
-                    if auth == false
-                        a(href="/login" id="login").
-                            login
-                        a(href="/login/facebook" id="login").
-                            facebook
-                        a(href="/signup" id="signup").
-                                signup
+                    

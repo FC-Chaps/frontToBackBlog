@@ -1,34 +1,47 @@
-body {
-  padding-top: 50px;
-  padding-bottom: 100px;
-  background-color: rgba(76, 56, 255, 0.71); }
-
 button form input {
   background-color: #fff;
   border: none; }
 
 .header {
-  text-align: center; }
-  .header h2 {
-    color: #fff; }
-    .header h2:after {
-      display: block;
-      content: " ";
-      margin: 15px auto 20px;
-      width: 80px;
-      height: 3px;
-      background-color: #fff; }
+  text-align: center;
+  background-color: rgba(119, 157, 160, 0.71); }
+  .header form input {
+    color: rgba(119, 157, 160, 0.71);
+    background: #fff;
+    padding: 5px;
+    width: 75%;
+    font-size: 15px;
+    border: none;
+    margin: 5px 0; }
+    .header form input:hover {
+      text-decoration: underline; }
 
 .post {
-  margin-top: 50px;
-  margin-bottom: 30px; }
+  padding: 0 20px; }
+  .post h1 {
+    font-family: "Droid Serif", serif; }
+  .post p {
+    margin: 0;
+    color: #777; }
   .post form .text-input {
     width: 100%;
     max-wdith: 100%;
     height: 250px; }
+  .post .col-md-12 {
+    margin: 20px 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #dce9ec; }
+    .post .col-md-12 p {
+      color: #000; }
+      .post .col-md-12 p:first-child {
+        padding-top: 20px; }
+      .post .col-md-12 p:last-child {
+        padding-bottom: 20px; }
 
 .main {
-  text-align: center; }
+  text-align: center;
+  background-color: rgba(119, 157, 160, 0.71); }
   .main h2 {
     color: #fff; }
   .main p {
@@ -41,5 +54,17 @@ button form input {
     background-color: rgba(255, 255, 255, 0.3); }
     .list ul li {
       padding: 5px; }
+
+@media (min-width: 992px) {
+  .main, .header {
+    height: 100vh;
+    position: fixed;
+    padding-top: 150px; }
+
+  .post {
+    padding: 0 50px;
+    margin-top: 50px; }
+    .post h1 {
+      font-size: 70px; } }
 
 /*# sourceMappingURL=main.css.map */

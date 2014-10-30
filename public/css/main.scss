@@ -1,8 +1,6 @@
-body {
-    padding-top: 50px;
-    padding-bottom: 100px;
-    background-color: rgba(76, 56, 255, 0.71);
-}
+$title: 'Droid Serif', serif;
+$postColor: rgba(119, 157, 160, 0.71);
+
 button {
     form {
         input {
@@ -15,33 +13,62 @@ button {
 // single styles
 .header {
     text-align: center;
-    h2 {
-        color: #fff;
-        &:after {
-            display: block;
-            content: " ";
-            margin: 15px auto 20px;
-            width:80px;
-            height:3px;
-            background-color: #fff;
+    background-color: $postColor;
+    form {
+        input {
+            color: $postColor;
+            background: #fff;
+            padding: 5px;
+            width: 75%;
+            font-size: 15px;
+            border: none;
+            margin: 5px 0;
+            &:hover {
+                text-decoration: underline;
+            }
         }
+
     }
+    
 }  
 .post {
-    margin-top: 50px;
-    margin-bottom: 30px;
+    padding: 0 20px;
+    h1 {
+            font-family: $title;
+    }
+    p {
+        margin: 0;
+        color: #777;
+    }
     form {
-        .text-input {
+        .text-input {   
             width: 100%;
             max-wdith: 100%;
             height: 250px;
         }
     }
+    .col-md-12 {
+        margin: 20px 0;
+        padding-left: 20px;
+        padding-right: 20px;
+        background-color:rgba(220, 233, 236, 1);
+        p {
+            color: #000;
+            &:first-child{
+                padding-top: 20px;
+            }
+            &:last-child{
+                padding-bottom: 20px;
+            }
+        }
+    }
+    
 }
 
 // home styles
 .main {
     text-align: center;
+    background-color: rgba(119, 157, 160, 0.71);
     h2 {
         color: #fff;
     }
@@ -56,6 +83,21 @@ button {
         background-color: rgba(255,255,255,0.3);
         li {
             padding: 5px;
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .main, .header {
+        height: 100vh;
+        position: fixed;
+        padding-top: 150px;
+    }
+    .post {
+        padding: 0 50px;
+        margin-top: 50px;
+        h1 {
+            font-size: 70px;
         }
     }
 }

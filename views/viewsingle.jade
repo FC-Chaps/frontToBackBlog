@@ -3,51 +3,40 @@ html
     head
         title #{title}
         link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css")
+        link(href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css')
         link(rel="stylesheet" href="/css/main.css")
     body
         .container-fluid
             .row
-                .header(class="col-md-6 col-md-offset-2")
-                    h2 #{title} a Blog Post
-                    .nav
-                        button(type="button" class="btn btn-default btn-lg")
-                            form(action="/")
-                                input(type="submit" value="<- Home")
-                        button(type="button" class="btn btn-default btn-lg")
-                            form(action="/post/#{post.id}/edit" method="get")
-                                input(type="submit" value="Edit Post")
-                        button(type="button" class="btn btn-default btn-lg")
-                            form(action="/post")
-                                input(type="submit" value="Publish")
-                .col-md-2  
-                    img.img-responsive(src="/img/joey-t.jpg")
-            .row
-                .post(class="col-md-8 col-md-offset-2")
- 
-            .row(class="footer")
-                .col-md-10(class="col-md-offset-1")
-                    h3.
+                .header(class="col-md-2")
+                    h3 The Chaps Blog
+                    form(action="/")
+                        input(type="submit" value="Home")
+                    form(action="/post/#{post.id}/edit" method="get")
+                        input(type="submit" value="Edit Post")
+                .post(class="col-md-10 col-md-offset-2")
+                    h1.
                         #{post.firstName}
-                    p.
-                        !{post.lastName}
                     p.
                         written by: #{post.author}
                     p.
                         on: #{post.date}
-            .row
-                .comments(class="col-md-8 col-md-offset-2")
-            .row
-                
+                    .col-md-12
+                        !{post.lastName}
+                .comments(class="col-md-9 col-md-offset-3")
+                    h4 Comments
                 if auth == true
-                    .newcomments
+                    .newcomments(class="col-md-9 col-md-offset-3")
                         input(type="text" style="visibility:hidden" value="#{post.id}" id="postId")
                         textarea(id="content")
-                        button(value="Comment" id="commentsButton").
+                        button(value="Comment" id="commentsButton" type="button" class="btn btn-default").
                             Comment!
 
                 else if auth == false
-                    form(action="/login" method="get")
-                        input(type="submit" value="login to comment")
+                    .newcomments(class="col-md-9 col-md-offset-3")
+                        p Be the first to comment on this post
+                        form(action="/login" method="get")
+                            input(type="submit" value="login to comment")
         script(src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js")
         script(src="/js/ajax.js")
 

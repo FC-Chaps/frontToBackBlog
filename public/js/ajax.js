@@ -45,8 +45,8 @@ function pushCommentsToMongo (url){
     $.ajax({
         type: "POST",
         data:{
-            user_name: $('#username').val(),
-            comment_content: $('#content').val()
+            comment_content: $('#content').val(),
+            postId: $("#postId").val()
         },
         dataType: "JSON",
         url: url,

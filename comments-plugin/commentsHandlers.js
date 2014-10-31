@@ -1,16 +1,17 @@
 module.exports = {
 	cacheComments: function (req, res) {
 	 	var url = req.headers.referer.split("/");
+	 	console.log(url);
 	 	postId = url[url.length-1];
 	 	var db = req.server.plugins["hapi-mongodb"].db;
 	    db.collection("comments")
 	    .find({onPost: postId})
 	    .toArray(function (err, data){
+	    	console.log(data);
 	    	res({comments: data});
 	    })
 	},
 	postComments: function (req, res) {
-		console.log(req.state.loggedin.id);
 		var db = req.server.plugins["hapi-mongodb"].db;
 		db.collection("users")
 		.find({id:req.state.loggedin.id})
@@ -20,7 +21,8 @@ module.exports = {
 	    	.insert({
 		    	username: user[0].username,
 		    	content: req.payload.comment_content,
-		    	onPost: req.payload.postId
+		    	onPost: req.payload.postId,
+		    	date: new Date()
 	        }, function(err, item) {res.redirect("/")}
     		);
 		})

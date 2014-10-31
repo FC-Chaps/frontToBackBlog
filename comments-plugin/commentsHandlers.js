@@ -13,7 +13,9 @@ module.exports = {
 		console.log(req.state.loggedin.id);
 		var db = req.server.plugins["hapi-mongodb"].db;
 		db.collection("users")
-		.find({id:req.state.loggedin.id})
+		.find({
+			id:req.state.loggedin.id
+		})
 		.toArray(function(err, user){
 			console.log(user[0]);
 			db.collection("comments")
@@ -21,7 +23,9 @@ module.exports = {
 		    	username: user[0].username,
 		    	content: req.payload.comment_content,
 		    	onPost: req.payload.postId
-	        }, function(err, item) {res.redirect("/")}
+	        }, function(err, item) {
+	        	res.redirect("/")
+	        }
     		);
 		})
 	}

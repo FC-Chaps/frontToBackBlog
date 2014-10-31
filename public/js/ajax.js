@@ -5,10 +5,10 @@ var writeToDom = (function(){
             var username = "anonymouse";
         }
         
-        // TODO: make this function to add an id??
-        $(".comments").append("<div><p class = 'username' id = 'username" + counter + "' ></p><p class = 'contents' id = 'content" + counter + "'></p><p class = 'time'></p></div>")
+        // // TODO: make this function to add an id??
+        // $(".comments").append("<div><p class = 'username' id = 'username" + counter + "' ></p><p class = 'contents' id = 'content" + counter + "'></p><p class = 'time'></p></div>")
 
-        $("#username" + counter ).append(username + " says:");   
+        $(".username").append(username + " says:");   
         $("#content" + counter ).append(content); 
         counter+=1
     }

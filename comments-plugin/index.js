@@ -6,14 +6,13 @@ exports.register = function (plugin, options, next){
     plugin.views({
         engines: {
               module: require('jade')
-            }
-        },
-        path: '/views/comments.jade'
+            },
+        path: './comments-plugin/views/'
     });
 
 	next();
-}
+};
 
 exports.register.attributes = {
 	pkg: require("./package.json")
-}
+};

@@ -5,6 +5,7 @@ module.exports = {
         var db = req.server.plugins["hapi-mongodb"].db;
         db.collection("posts")
         .find()
+        .sort({date: -1})
         .toArray(function (err2, dbPosts) {     
             res.view("home.jade", {
                 title: "The Chaps Blog",
@@ -15,17 +16,32 @@ module.exports = {
         });
     },
     single: function (req, res) {
+        console.log(req.auth);
         var db = req.server.plugins["hapi-mongodb"].db;
         db.collection("posts")
         .find({
             id: req.params.id
         })
-        .toArray(function (err2, dbPosts) {     
-            res.view("viewsingle.jade", {
-                title: "Posts",
-                post: dbPosts[0],
-                auth: req.state.hasOwnProperty("loggedin")
-            })
+        .toArray(function (err2, dbPosts) {  
+            if(req.auth.isAuthenticated){
+                db.collection("users")
+                .find({id:req.auth.credentials.id})
+                .toArray(function(err, user){
+                    res.view("viewsingle.jade", {
+                        title: "Posts",
+                        post: dbPosts[0],
+                        auth: true,
+                        username: user[0].username
+                    });
+                });
+            } else {
+                res.view("viewsingle.jade", {
+                    title: "Posts",
+                    post: dbPosts[0],
+                    auth: false,
+                    username: user[0].username
+                });
+            }
         });
     },
     getLogin: function (req, res) {

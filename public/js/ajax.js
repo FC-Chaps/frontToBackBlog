@@ -10,12 +10,13 @@ $(document).on("ready", function(){
 })
 
 $("#commentsButton").on("click", function(){
-    var user = $("#username").val()
+    var user = $("#username").html()
     var content = $("#content").val()
+    var date = new Date();
 
     pushCommentsToMongo("http://0.0.0.0:8080/postComments")
     $("#content").val("");
-    writeToDom(user, content);  
+    writeToDom(user, content, date);  
 })
 
 function getCommentsFromCache (url){

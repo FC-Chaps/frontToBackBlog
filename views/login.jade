@@ -7,8 +7,10 @@ html
     body
         .container-fluid
             .row
-                .col-md-4(class="col-md-offset-4")
+                .col-md-4(class="col-md-offset-4 login")
+                    h3 Login
                     form(action="/login" method="post")
-                        input(type="text" name="username")
-                        input(type="password" name="password")
+                        input(type="text" name="username" placeholder="Username")
+                        input(type="password" name="password" placeHolder="Password")
                         input(type="submit" value="login!")
+                    a(href="/") cancel

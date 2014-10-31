@@ -6,7 +6,7 @@ module.exports = {
 	    db.collection("comments")
 	    .find({onPost: postId})
 	    .toArray(function (err, data){
-	    	res({comments: data});
+	    	res.view('comments.jade',{comments: data});
 	    })
 	},
 	postComments: function (req, res) {

@@ -5,9 +5,11 @@ exports.register = function (plugin, options, next){
 
     plugin.views({
         engines: {
-              module: require('jade')
+              jade: {
+                    module: require('jade')
+                }
             },
-        path: './comments-plugin/views/'
+        path: './views'
     });
 
 	next();

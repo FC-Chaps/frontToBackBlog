@@ -1,16 +1,7 @@
 var writeToDom = (function(){
-    var counter = 0;
-    return function writeToDom(username, content) {
-        if(typeof username === undefined){
-            var username = "anonymouse";
-        }
-        
-        // // TODO: make this function to add an id??
-        // $(".comments").append("<div><p class = 'username' id = 'username" + counter + "' ></p><p class = 'contents' id = 'content" + counter + "'></p><p class = 'time'></p></div>")
-
-        $(".username").append(username + " says:");   
-        $("#content" + counter ).append(content); 
-        counter+=1
+    return function writeToDom(content) {
+        // TODO: make this function to add an id??
+        $(".comments").append(content)
     }
 }());
 
@@ -30,14 +21,12 @@ $("#commentsButton").on("click", function(){
 function getCommentsFromCache (url){
     $.ajax({
         type: "GET",
-        dataType: "JSON",
+        dataType: "html",
         url: url,
         success: function (data) {
             $(".comments").empty();
-            console.log(data.comments);
-            for(var i = 0; i <= data.comments.length-1; i+=1){
-                writeToDom(data.comments[i].username, data.comments[i].content);
-            } 
+            console.log(data);
+            writeToDom(data);
         },
         error: function (error) {
             console.log(error);

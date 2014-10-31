@@ -8,7 +8,7 @@ module.exports = {
 	    .find({onPost: postId})
 	    .toArray(function (err, data){
 	    	console.log(data);
-	    	res({comments: data});
+	    	res.view("",{comments: data});
 	    })
 	},
 	postComments: function (req, res) {
@@ -17,13 +17,16 @@ module.exports = {
 		.find({id:req.state.loggedin.id})
 		.toArray(function(err, user){
 			console.log(user[0]);
-			db.collection("comments")
-	    	.insert({
-		    	username: user[0].username,
+			var comment = {
+				username: user[0].username,
 		    	content: req.payload.comment_content,
 		    	onPost: req.payload.postId,
-		    	date: new Date()
-	        }, function(err, item) {res.redirect("/")}
+		    	date: new Date(),
+		    	likes: []
+			}
+			comment.numLikes = comment.likes.length;
+			db.collection("comments")
+	    	.insert(comment, function(err, item) {res.redirect("/")}
     		);
 		})
 	}

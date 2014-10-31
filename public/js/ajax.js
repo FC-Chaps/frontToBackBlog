@@ -1,6 +1,6 @@
 var writeToDom = (function(){
     return function writeToDom(content) {
-        // TODO: make this function to add an id??
+        // TODO: make this function to add an id
         $(".comments").append(content)
     }
 }());
@@ -9,14 +9,22 @@ $(document).on("ready", function(){
    getCommentsFromCache("http://0.0.0.0:8080/getComments");
 })
 
-$("#commentsButton").on("click", function(){
-    var user = $("#username").html()
-    var content = $("#content").val()
-    var date = new Date();
+function formatData (user, content, date) {
+    var content = '<div>' +
+        '<p class="username">' + user + ': </p>' + 
+        '<p class="contents">' + content + '</p>' +
+        '<p class="time">' + date + '</p>' +
+        '<p class="likes">0 likes</p>' +
+   '</div>';
+   return content;
+}
 
+$("#commentsButton").on("click", function(){
     pushCommentsToMongo("http://0.0.0.0:8080/postComments")
-    $("#content").val("");
-    writeToDom(user, content, date);  
+    var user = $("#username").html();
+    var content = $("#content").val();
+    var date = new Date(); 
+    writeToDom(formatData(user, content, date));
 })
 
 function getCommentsFromCache (url){

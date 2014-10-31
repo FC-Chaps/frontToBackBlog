@@ -23,8 +23,9 @@ html
                         on: #{post.date}
                     .col-md-12
                         !{post.lastName}
+                        
                 .comments(class="col-md-9 col-md-offset-3")
-                    h4 Comments
+                    
                 if auth == true
                     .newcomments(class="col-md-9 col-md-offset-3")
                         input(type="text" style="visibility:hidden" value="#{post.id}" id="postId")

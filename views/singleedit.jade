@@ -17,8 +17,6 @@ html
                         button(type="button" class="btn btn-default btn-lg")
                             form(action="/edit")
                                 input(type="submit" value="Edit Post")
-                .col-md-2  
-                    img.img-responsive(src="/img/joey-t.jpg")
             .row
                 .post(class="col-md-8 col-md-offset-2")
                     form(action="/post/#{post.id}/edit" method="post")

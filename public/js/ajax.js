@@ -1,14 +1,7 @@
 var writeToDom = (function(){
-    var counter = 0;
-    return function writeToDom(username, content) {
-        if(typeof username === undefined){
-            var username = "anonymouse";
-        }
-        $(".comments").append("<div><p class = 'username' id = 'username" + counter + "' ></p><p class = 'contents' id = 'content" + counter + "'></p><p class = 'time'></p></div>")
-        $("#username" + counter ).append(username + " says:");   
-        $("#content" + counter ).append(content); 
-        $("#time" + counter).append(date);
-        counter+=1
+    return function writeToDom(content) {
+        // TODO: make this function to add an id
+        $(".comments").append(content)
     }
 }());
 
@@ -16,27 +9,33 @@ $(document).on("ready", function(){
    getCommentsFromCache("http://0.0.0.0:8080/getComments");
 })
 
-$("#commentsButton").on("click", function(){
-    var user = $("#username").html()
-    var content = $("#content").val()
-    var date = new Date();
+function formatData (user, content, date) {
+    var content = '<div>' +
+        '<p class="username">' + user + ': </p>' + 
+        '<p class="contents">' + content + '</p>' +
+        '<p class="time">' + date + '</p>' +
+        '<p class="likes">0 likes</p>' +
+   '</div>';
+   return content;
+}
 
+$("#commentsButton").on("click", function(){
     pushCommentsToMongo("http://0.0.0.0:8080/postComments")
-    $("#content").val("");
-    writeToDom(user, content, date);  
+    var user = $("#username").html();
+    var content = $("#content").val();
+    var date = new Date(); 
+    writeToDom(formatData(user, content, date));
 })
 
 function getCommentsFromCache (url){
     $.ajax({
         type: "GET",
-        dataType: "JSON",
+        dataType: "html",
         url: url,
         success: function (data) {
             $(".comments").empty();
-            console.log(data.comments);
-            for(var i = 0; i <= data.comments.length-1; i+=1){
-                writeToDom(data.comments[i].username, data.comments[i].content, data.comments[i].date);
-            } 
+            console.log(data);
+            writeToDom(data);
         },
         error: function (error) {
             console.log(error);

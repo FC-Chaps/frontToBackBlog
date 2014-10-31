@@ -7,14 +7,15 @@ module.exports = {
 	    db.collection("comments")
 	    .find({onPost: postId})
 	    .toArray(function (err, data){
-	    	console.log(data);
-	    	res.view("",{comments: data});
+	    	res.view('comments.jade',{comments: data});
 	    })
 	},
 	postComments: function (req, res) {
 		var db = req.server.plugins["hapi-mongodb"].db;
 		db.collection("users")
-		.find({id:req.state.loggedin.id})
+		.find({
+			id:req.state.loggedin.id
+		})
 		.toArray(function(err, user){
 			console.log(user[0]);
 			var comment = {

@@ -6,7 +6,7 @@ var writeToDom = (function(){
 }());
 
 $(document).on("ready", function(){
-   getCommentsFromCache("http://0.0.0.0:8080/getComments");
+   getCommentsFromCache("http://fronttoback.herokuapp.com/getComments");
 })
 
 function formatData (user, content, date) {
@@ -20,7 +20,7 @@ function formatData (user, content, date) {
 }
 
 $("#commentsButton").on("click", function(){
-    pushCommentsToMongo("http://0.0.0.0:8080/postComments")
+    pushCommentsToMongo("http://fronttoback.herokuapp.com/postComments")
     var user = $("#username").html();
     var content = $("#content").val();
     var date = new Date(); 

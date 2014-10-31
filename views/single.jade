@@ -8,14 +8,9 @@ html
         .container-fluid
             .row
                 .header(class="col-md-2")
-                    h2 #{title} a Blog Post
-                    .nav
-                        button(type="button" class="btn btn-default btn-lg")
-                            form(action="/")
-                                input(type="submit" value="<- Home")
-                        button(type="button" class="btn btn-default btn-lg")
-                            form(action="/edit")
-                                input(type="submit" value="Edit Post")
+                    h3 #{title} a Blog Post
+                    form(action="/")
+                        input(type="submit" value="Home")
             .row
                 .post(class="col-md-8 col-md-offset-2")
                     form(action="/new" method="post")

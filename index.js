@@ -14,6 +14,8 @@ var authOptions = require('./config/authOptions.js');
 //For Logging
 var loggingOptions = require('./test/logopts.js');
 
+
+
 pack.register([require("hapi-auth-cookie"), require("bell")], function(){
 	server1.auth.strategy("session", "cookie", authOptions.cookieOptions);
 	server1.auth.strategy("facebook", "bell", authOptions.facebookOptions);
@@ -24,7 +26,9 @@ pack.register([
 		plugin: require('good'),
 		options: loggingOptions
 	},
-	{plugin: require('./comments-plugin')},
+	{
+		plugin: require('./comments-plugin')
+	},
 	{
 		plugin: require("hapi-mongodb"),
 		options: {

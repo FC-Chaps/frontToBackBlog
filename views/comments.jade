@@ -9,3 +9,5 @@ each comment in comments
             #{comment.date}
         p.likes.
             #{comment.likes}
+        form(action="/comment/like/#{comment.id}" method="get")
+            input(type="submit" value="Like" id="like")

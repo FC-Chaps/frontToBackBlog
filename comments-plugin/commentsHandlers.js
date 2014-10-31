@@ -23,6 +23,7 @@ module.exports = {
 		    	content: req.payload.comment_content,
 		    	onPost: req.payload.postId,
 		    	date: new Date(),
+		    	id: "cid" + new Date().getTime(),
 		    	likes: []
 			}
 			comment.numLikes = comment.likes.length;

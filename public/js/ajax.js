@@ -7,6 +7,7 @@ var writeToDom = (function(){
         $(".comments").append("<div><p class = 'username' id = 'username" + counter + "' ></p><p class = 'contents' id = 'content" + counter + "'></p><p class = 'time'></p></div>")
         $("#username" + counter ).append(username + " says:");   
         $("#content" + counter ).append(content); 
+        $("#time" + counter).append(date);
         counter+=1
     }
 }());
@@ -16,12 +17,13 @@ $(document).on("ready", function(){
 })
 
 $("#commentsButton").on("click", function(){
-    var user = $("#username").val()
+    var user = $("#username").html()
     var content = $("#content").val()
+    var date = new Date();
 
     pushCommentsToMongo("http://0.0.0.0:8080/postComments")
     $("#content").val("");
-    writeToDom(user, content);  
+    writeToDom(user, content, date);  
 })
 
 function getCommentsFromCache (url){
@@ -33,7 +35,7 @@ function getCommentsFromCache (url){
             $(".comments").empty();
             console.log(data.comments);
             for(var i = 0; i <= data.comments.length-1; i+=1){
-                writeToDom(data.comments[i].username, data.comments[i].content);
+                writeToDom(data.comments[i].username, data.comments[i].content, data.comments[i].date);
             } 
         },
         error: function (error) {

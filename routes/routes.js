@@ -26,6 +26,13 @@ module.exports = [
     {
         path: '/post/{id}',
         method: 'GET',
+        config: {
+            auth: {
+                strategy: "session",
+                mode: "try"
+            },
+            plugins: {"hapi-auth-cookie" : {redirectTo: false}}
+        },
         handler: pubHandler.single
     },
 

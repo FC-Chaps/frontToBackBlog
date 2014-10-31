@@ -6,10 +6,7 @@ module.exports = [
 		path: "/getComments",
 		method: "GET",
 		config: {
-	   		handler: commentHandler.cacheComments,
-		    cache: {
-		    	 expiresIn: 80000000
-		    }
+	   		handler: commentHandler.cacheComments
 		}
 	},
 	{

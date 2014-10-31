@@ -51,7 +51,7 @@ module.exports = {
                 .insert({
                     firstName: req.payload.fname,
                     lastName: req.payload.lname,
-                    author: req.state.loggedin.username,
+                    author: user[0].username,
                     date: new Date(),
                     id: "pid" + new Date().getTime()
                 }, function(err, item) {res.redirect("/")});
@@ -71,8 +71,13 @@ module.exports = {
                 db.collection("posts")
                 .remove({
                     id: req.params.id
-                }, function(err, item) {
-                    res.redirect("/");
+                }, function (err2, item) {
+                    db.collection("comments")
+                    .remove({
+                        onPost: req.params.id
+                    }, function (err3, items) {
+                        res.redirect("/");
+                    })
                 })
             } else {
                 res.view("401.jade");
@@ -85,11 +90,18 @@ module.exports = {
     },
     updatePost: function (req, res) {
         var db = req.server.plugins["hapi-mongodb"].db;
-        db.collection("posts")
-        .update({id: req.params.id}, {
-            firstName: req.payload.fname,
-            lastName: req.payload.lname
-        }, function(err, count, status){res.redirect("/")});
+        db.collection("users")
+        .find({id: req.params.id})
+        .toArray(function(err, user){
+            db.collection("posts")
+            .update({id: req.params.id}, { 
+                    $set: {
+                        firstName: req.payload.fname,
+                        lastName: req.payload.lname
+                    }
+            }, function(err, count, status){res.redirect("/")});
+        })
+        
     },
     getAdminHome: function (req, res) {
         var db = req.server.plugins["hapi-mongodb"].db;

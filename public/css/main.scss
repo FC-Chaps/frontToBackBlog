@@ -9,11 +9,17 @@ button {
         }
     }
 }
+#username, #postId {
+    display: none;
+}
 
 // single styles
 .header {
     text-align: center;
     background-color: $postColor;
+    h3 {
+        color: white;
+    }
     form {
         input {
             color: $postColor;
@@ -60,6 +66,15 @@ button {
     }
     
 }
+.newcomments {
+    #content {
+        float: left;
+        line-height: 1.5;
+    }
+    #commentsButton {
+        float: left;
+    }
+}
 
 // home styles
 .main {
@@ -70,6 +85,16 @@ button {
     }
     p {
         color: #D4FFB2;
+        margin-bottom: 30px;
+    }
+    a {
+        display: block;
+        border: none;
+        border-radius: 0;
+        width: 30%;
+        margin: 1px auto;
+        line-height: 1;
+        padding: 5px 0;
     }
 }
 .list {
@@ -122,7 +147,10 @@ button {
         padding-right: 0;
     }
     .header {
-        padding-top: 80px;
+        padding-top: 40px;
+        h3 {
+            padding: 0 50px;
+        }
         form {
             input {
                 width: 60%;
@@ -143,4 +171,13 @@ button {
             font-size: 70px;
         }
     }
+    .newcomments {
+        #content {
+            width: 400px;
+        }
+        #commentsButton {
+            margin: 10px;
+        }
+    }
+
 }

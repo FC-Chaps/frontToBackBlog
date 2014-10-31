@@ -8,15 +8,12 @@ html
     body
         .container-fluid
             .row
-                .header(class="col-md-6 col-md-offset-2")
-                    h2 #{title} a Blog Post
-                    .nav
-                        button(type="button" class="btn btn-default btn-lg")
-                            form(action="/")
-                                input(type="submit" value="<- Home")
-                        button(type="button" class="btn btn-default btn-lg")
-                            form(action="/edit")
-                                input(type="submit" value="Edit Post")
+                .header(class="col-md-2")
+                    h3 Edit this post
+                    form(action="/")
+                        input(type="submit" value="Home")
+                    form(action="/post/#{post.id}")
+                        input(type="submit" value="Back")
             .row
                 .post(class="col-md-8 col-md-offset-2")
                     form(action="/post/#{post.id}/edit" method="post")
@@ -25,6 +22,7 @@ html
                         input(type="submit" value="Publish" class="btn btn-default btn-lg")
             .row(class="footer")
                 .col-md-10(class="col-md-offset-1")
+            input(type="text" style="visibility:hidden" value="#{post.id}" id="postId")
         script(src="https://tinymce.cachefly.net/4.1/tinymce.min.js")
         script.
             tinymce.init({selector:'textarea'});

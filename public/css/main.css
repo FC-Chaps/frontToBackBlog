@@ -2,9 +2,14 @@ button form input {
   background-color: #fff;
   border: none; }
 
+#username, #postId {
+  display: none; }
+
 .header {
   text-align: center;
   background-color: rgba(119, 157, 160, 0.71); }
+  .header h3 {
+    color: white; }
   .header form input {
     color: rgba(119, 157, 160, 0.71);
     background: #fff;
@@ -36,13 +41,28 @@ button form input {
       .post .col-md-12 p:last-child {
         padding-bottom: 20px; }
 
+.newcomments #content {
+  float: left;
+  line-height: 1.5; }
+.newcomments #commentsButton {
+  float: left; }
+
 .main {
   text-align: center;
   background-color: rgba(119, 157, 160, 0.71); }
   .main h2 {
     color: #fff; }
   .main p {
-    color: #D4FFB2; }
+    color: #D4FFB2;
+    margin-bottom: 30px; }
+  .main a {
+    display: block;
+    border: none;
+    border-radius: 0;
+    width: 30%;
+    margin: 1px auto;
+    line-height: 1;
+    padding: 5px 0; }
 
 .list {
   padding-top: 50px; }
@@ -52,16 +72,16 @@ button form input {
     .list ul li {
       padding: 5px; }
 
-.signup {
+.signup, .login {
   margin-top: 100px;
   text-align: center; }
-  .signup form {
+  .signup form, .login form {
     text-align: center;
     padding-top: 30px; }
-    .signup form input {
+    .signup form input, .login form input {
       width: 100%;
       margin: 4px 0; }
-      .signup form input:last-child {
+      .signup form input:last-child, .login form input:last-child {
         width: 50%;
         background-color: #357ae8;
         padding: 5px;
@@ -79,7 +99,9 @@ button form input {
     padding-right: 0; }
 
   .header {
-    padding-top: 80px; }
+    padding-top: 40px; }
+    .header h3 {
+      padding: 0 50px; }
     .header form input {
       width: 60%;
       transition: width 0.4s; }
@@ -92,6 +114,11 @@ button form input {
     padding: 0 50px;
     margin-top: 50px; }
     .post h1 {
-      font-size: 70px; } }
+      font-size: 70px; }
+
+  .newcomments #content {
+    width: 400px; }
+  .newcomments #commentsButton {
+    margin: 10px; } }
 
 /*# sourceMappingURL=main.css.map */
